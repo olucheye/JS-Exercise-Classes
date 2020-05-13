@@ -1,7 +1,10 @@
 # The _class_ Syntax
-I stumbled upon LAMBDA's curriculum and I am using her in-house student challenges to verify my self-taught knowledge of Web Programming(Javascript).
-
 This challenge focuses on using the new for ES6 `class` syntax.
+
+
+`I stumbled upon LAMBDA's curriculum and I am using her in-house student challenges to verify my self-taught knowledge of Web Programming(Javascript).`
+
+
 
 ##### Index
 
