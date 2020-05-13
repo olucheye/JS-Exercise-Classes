@@ -113,10 +113,10 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  constructor({name, age, location}){
-    this.name = name;
-    this.age = age;
-    this.location = location;
+  constructor(person){
+    this.name = person.name;
+    this.age = person.age;
+    this.location = person.location;
   }
   speak(){
     return `Hello my name is ${this.name}, I am from ${this.location}`;
@@ -138,21 +138,18 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian{
-  constructor({name, age, location, specialty, favLanguage, catchPhrase}) {
-    super(name );
-    //super(age);
-    //super(location);
-    this.specialty = specialty;
-    this.favLanguage = favLanguage;
-    this.catchPhrase = catchPhrase;
+  constructor(person) {
+    super(person);
+    this.specialty = person.specialty;
+    this.favLanguage = person.favLanguage;
+    this.catchPhrase = person.catchPhrase;
   }
   demo(subject){
-    return `Today we are learning about ${subject}`
+    return `Today we are learning about ${subject}`;
   }
-  grade({student}, subject){
-    return `${student.name} receives a perfect score on ${subject}`
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`;
   }
-  
 }
 
 /*
@@ -171,25 +168,30 @@ class Instructor extends Lambdasian{
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student extends Lambdasian{
-  constructor({name, age, location, previousBackground, className, favSubjects}){
-    super(name);
-    //super(age);
-    //super(location);
-    this.previousBackground = previousBackground;
-    this.className = className;
-    this.favSubjects = favSubjects;
+  constructor(person){
+    super(person);
+    this.previousBackground = person.previousBackground;
+    this.className = person.className;
+    this.favSubjects = person.favSubjects;
+    this.grade = 80; //Strech challenge
   }
   listSubjects(){
     let favSubjects = this.favSubjects
-    return `${favSubjects.forEach(subject=> subject + " ")}`
+    return `${favSubjects.forEach(subject => subject)}`;
   }
   PRAssignment(subject){
-    return `${this.name}has submitted a PR for ${this.subject}`
+    return `${this.name} has submitted a PR for ${subject}`;
   }
   sprintChallenge(subject){
-    return `${super.name} has begun sprint challenge on ${subject}`;
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
-
+  method(){
+    if(this.grade > 70){
+      return `${this.name} can graduate`;
+    }else{
+      return `Re-grade ${this.name}'s assignment`;
+    }
+  }
 
 }
 
@@ -206,14 +208,27 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor{
+  constructor(person){
+    super(person);
+    this.gradClassName = person.gradClassName;
+    this.favInstructor = person.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
+  
 }
 
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+    @@=== to be revisited
     - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+    @@===========================
     - Add a graduate method to a student.
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
