@@ -25,4 +25,5 @@ Find the file `index.js` and complete the tasks until all of your tests pass.
 1. Create a new branch by typing `git checkout -b <firstName-lastName>`.
 1. Install dependencies by typing `npm install`.
 1. Run tests by typing `npm run test:watch`.
+
 [Redacted]
